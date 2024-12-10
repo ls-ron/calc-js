@@ -30,6 +30,7 @@ html, body {
     display: flex;
     justify-content: right;
     align-items: center;
+    border-radius: 1%;
 }
 
 #items {
