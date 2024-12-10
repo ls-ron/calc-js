@@ -31,6 +31,8 @@ html, body {
     justify-content: right;
     align-items: center;
     border-radius: 1%;
+    font-size: xxx-large;
+    font-weight: 500;
 }
 
 #items {
