@@ -1,33 +1,36 @@
 let isOperator = false;
-let buttonPress = document.querySelectorAll(".input")
+let buttonPress = document.querySelectorAll(".input");
 
 function updateOutput() {
-    let outputDiv = document.getElementById('evaluate')
-    let text = document.createTextNode(buttonPress)
-    outputDiv.appendChild(text)
+    let outputDiv = document.getElementById('evaluate');
+    let text = document.createTextNode(buttonPress);
+    outputDiv.appendChild(text);
 }
 
-const numberClass = document.querySelectorAll('.number')
+const numberClass = document.querySelectorAll('.number');
 numberClass.forEach(item => {
-    
-});(item => {
-    item.addeventlistener("click", numberPress)
-    }
-    
-    function numberPress(event) {
-    outputDiv = document.getElementById("evaluate");
+    item.addEventListener("click", numberPress);
+});
+
+function numberPress(event) {
+    let outputDiv = document.getElementById("evaluate");
     if (isOperator) {
-    outputDiv.innerText = ""}
-    num = document.getElementById(event).innerText;
-    outputDiv = document.getElementById("evaluate");
-    outputDiv.innerText += num;
+        outputDiv.innerText = "";
     }
-    
-    for each operatorClass(item => {
-    item.addeventlistener("click", operatorPress);
+    let num = event.target.innerText;
+    if (outputDiv.innerText.length < 15) {
+        outputDiv.innerText += num;
+        isOperator = false;
     }
-    
-    function operatorPress(event) {
+}
+
+const operatorClass = document.querySelectorAll('.operator');
+operatorClass.forEach(item => {
+    item.addEventListener("click", operatorPress);
+});
+
+function operatorPress(event) {
     isOperator = true;
-    const operator = document.getElementById("event");
-    }
+    const operator = event.target.innerText;
+    let outputDiv = document.getElementById("evaluate");
+}
