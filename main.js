@@ -1,11 +1,8 @@
 let isOperator = false;
-let buttonPress = document.querySelectorAll(".input");
-
-function updateOutput() {
-    let outputDiv = document.getElementById('evaluate');
-    let text = document.createTextNode(buttonPress);
-    outputDiv.appendChild(text);
-}
+const buttonPress = document.querySelectorAll(".input");
+let previousValue = null;
+let currentOperator = '';
+let currentValue = '';
 
 const numberClass = document.querySelectorAll('.number');
 numberClass.forEach(item => {
@@ -15,6 +12,7 @@ numberClass.forEach(item => {
 function numberPress(event) {
     let outputDiv = document.getElementById("evaluate");
     if (isOperator) {
+        previousValue = outputDiv.innerText
         outputDiv.innerText = "";
     }
     let num = event.target.innerText;
@@ -30,7 +28,57 @@ operatorClass.forEach(item => {
 });
 
 function operatorPress(event) {
+    if (isOperator) return; 
     isOperator = true;
-    const operator = event.target.innerText;
-    let outputDiv = document.getElementById("evaluate");
+    currentOperator = event.target.innerText;
+}
+
+const equal = document.getElementById('equal')
+equal.addEventListener('click', evaluate)
+
+function evaluate() {
+    let outputDiv = document.getElementById('evaluate')
+    currentValue = outputDiv.innerText
+    if (currentOperator === '*') {
+        outputDiv.innerText = multiplication(parseInt(previousValue), parseInt(currentValue))
+    } else if (currentOperator === '/') {
+        outputDiv.innerText = division(parseInt(previousValue), parseInt(currentValue))
+    } else if (currentOperator === '+') {
+        outputDiv.innerText = addition(parseInt(previousValue), parseInt(currentValue))
+    } else {
+        outputDiv.innerText = subtraction(parseInt(previousValue), parseInt(currentValue))
+    }
+    previousValue = null;
+    currentValue = '';
+}
+
+function multiplication(x, y) {
+    return x * y
+}
+
+function division(x, y) {
+    if (y === 0) {
+        alert("Cannot divide by zero");
+        return "";
+    }
+    return x / y
+}
+
+function addition(x, y) {
+    return x + y
+}
+
+function subtraction(x, y) {
+    return x - y
+}
+
+const allClear = document.getElementById('clear')
+allClear.addEventListener('click', allClearPress)
+
+function allClearPress() {
+    let outputDiv = document.getElementById('evaluate');
+    outputDiv.innerText = ''
+    previousValue = null; 
+    currentOperator = '';
+    currentValue = '';
 }
