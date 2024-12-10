@@ -10,4 +10,4 @@ It is a simple calculator containing these functions:
 - Division
 <br><br>
 
-Link will be provided [here]() to access the calculator online.
+Link will be provided [here](https://ls-ron.github.io/calc-js/) to access the calculator online.
